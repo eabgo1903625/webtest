@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서울의 수돗물 아리수: 진실을 만나다</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            color: white;
+            font-weight: bold;
+            min-height: 80px;
+        }
+        .flowchart-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #0077B6;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#0077B6] mb-4">서울의 수돗물 아리수: 진실을 만나다</h1>
+            <p class="text-lg md:text-xl text-gray-600">우리가 매일 마시는 물, 아리수에 대한 모든 것을 알려드립니다. 그리고 곧 열릴 축제에서 직접 경험해보세요!</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0077B6] text-center mb-6">💧 한강의 물이 당신의 컵에 오기까지: 아리수 정수 과정</h2>
+                <p class="text-center text-gray-700 mb-8">아리수는 단순한 물이 아닙니다. 한강 원수로부터 시작하여 세계 최고 수준의 기술로 관리되는 과학의 결정체입니다. 아래 과정을 통해 안전하고 맛있는 아리수가 탄생합니다.</p>
+                <div class="grid grid-cols-2 md:grid-cols-11 gap-4 items-center">
+                    <div class="flowchart-step bg-[#00B4D8] col-span-2">1. 취수<br>(한강 원수)</div>
+                    <div class="flowchart-arrow hidden md:flex">→</div>
+                    <div class="flowchart-step bg-[#90E0EF] text-[#0077B6] col-span-2">2. 고급 정수 처리<br>(오존 & 활성탄)</div>
+                    <div class="flowchart-arrow hidden md:flex">→</div>
+                    <div class="flowchart-step bg-[#00B4D8] col-span-2">3. 정밀 여과<br>(막여과 공법)</div>
+                    <div class="flowchart-arrow hidden md:flex">→</div>
+                    <div class="flowchart-step bg-[#90E0EF] text-[#0077B6] col-span-2">4. 소독<br>(염소 투입)</div>
+                    <div class="flowchart-arrow hidden md:flex">→</div>
+                    <div class="flowchart-step bg-[#0077B6] col-span-2">5. 공급<br>(가정)</div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0077B6] text-center mb-6">🏆 세계가 인정한 품질: 아리수 수질 리포트</h2>
+                <p class="text-center text-gray-700 mb-8">아리수는 세계보건기구(WHO)가 권장하는 166개 항목보다 훨씬 많은 357개 항목에 대해 꼼꼼한 수질검사를 통과합니다. 주요 항목에서 아리수가 얼마나 압도적으로 안전한지 확인해보세요.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">탁도 (NTU)</h3>
+                        <div class="chart-container h-64 md:h-80"><canvas id="turbidityChart"></canvas></div>
+                        <p class="mt-4 text-gray-600">탁도는 물의 흐림 정도를 나타냅니다. 아리수의 탁도는 WHO 기준치보다 100배 더 맑은 수준을 유지하여 매우 깨끗함을 의미합니다.</p>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">잔류 염소 (mg/L)</h3>
+                         <div class="chart-container h-64 md:h-80"><canvas id="chlorineChart"></canvas></div>
+                        <p class="mt-4 text-gray-600">잔류 염소는 소독 효과를 유지하면서도 맛과 냄새에 영향을 주지 않는 최적의 양으로 관리됩니다. 아리수는 건강과 맛을 모두 잡았습니다.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0077B6] text-center mb-6">🗣️ 시민의 목소리: 서울 시민의 물 음용 실태</h2>
+                <p class="text-center text-gray-700 mb-8">많은 시민들이 이미 다양한 방식으로 아리수를 신뢰하고 마시고 있습니다. 최근 조사에 따르면 아리수 수질에 대한 만족도는 매우 높게 나타났습니다.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">서울 시민 음용수 이용 현황</h3>
+                        <div class="chart-container"><canvas id="consumptionChart"></canvas></div>
+                         <p class="mt-4 text-gray-600 text-center">정수기 사용을 포함하면 서울 시민 10명 중 8명은 아리수를 마시고 있습니다. 이는 아리수가 우리 생활 깊숙이 자리 잡고 있음을 보여줍니다.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">아리수 수질 만족도</h3>
+                        <div class="chart-container"><canvas id="satisfactionChart"></canvas></div>
+                        <p class="mt-4 text-gray-600 text-center">아리수를 마시는 시민들의 78.2%가 수질에 만족한다고 응답했습니다. 이는 아리수의 높은 품질이 시민들에게 인정받고 있음을 증명합니다.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#0077B6] text-center mb-6">💡 현명한 선택: 아리수 vs 생수</h2>
+                <p class="text-center text-gray-700 mb-8">아리수는 품질뿐만 아니라 경제성과 환경 보호 측면에서도 월등한 선택입니다. 불필요한 플라스틱 소비와 지출을 줄여보세요.</p>
+                <div class="flex flex-col md:flex-row justify-around items-center text-center gap-8">
+                    <div class="bg-[#CAF0F8] p-6 rounded-lg w-full md:w-1/3">
+                        <h3 class="text-2xl font-bold text-[#0077B6]">가격 비교</h3>
+                        <p class="text-5xl font-black text-[#0077B6] my-4">1,000배</p>
+                        <p class="text-gray-700">생수는 아리수보다 약 1,000배 비쌉니다. 1년에 아리수 2L를 매일 마셔도 비용은 약 800원에 불과합니다.</p>
+                    </div>
+                    <div class="bg-[#ADE8F4] p-6 rounded-lg w-full md:w-1/3">
+                        <h3 class="text-2xl font-bold text-[#0077B6]">환경 영향</h3>
+                        <p class="text-5xl font-black text-[#0077B6] my-4">ZERO</p>
+                        <p class="text-gray-700">아리수는 플라스틱 쓰레기를 배출하지 않습니다. 아리수를 마시는 것만으로도 지구를 위한 작은 실천이 됩니다.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-[#0077B6] text-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-6">🎉 아리수와 함께하는 물의 축제에 초대합니다!</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p class="mb-4">아리수의 모든 것을 직접 보고, 느끼고, 맛볼 수 있는 특별한 축제가 열립니다! 가족, 친구와 함께 광화문 광장에서 즐거운 시간을 보내세요.</p>
+                        <ul class="space-y-3 list-disc list-inside bg-white/20 p-4 rounded-lg">
+                            <li><strong>행사명:</strong> 아리수와 함께하는 물의 축제</li>
+                            <li><strong>일시:</strong> 2025년 10월 20일(월) 14:00 ~ 16:00</li>
+                            <li><strong>장소:</strong> 광화문 광장</li>
+                            <li><strong>주요 프로그램:</strong> 아리수 시음, 정수 과정 전시, 퀴즈쇼, 포토존, 문화 공연</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-center">축제 예산 분배 (총 1,350만원)</h3>
+                        <div class="chart-container"><canvas id="budgetChart"></canvas></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-12 text-gray-500">
+            <p>&copy; 2025 서울특별시 아리수본부. All rights reserved.</p>
+        </footer>
+    </div>
+
+<script>
+    const brilliantBlues = ['#0077B6', '#00B4D8', '#90E0EF', '#ADE8F4', '#CAF0F8'];
+
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+            return label.join(' ');
+        }
+        return label;
+    };
+    
+    const defaultChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'top',
+                labels: {
+                    color: '#334155'
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                }
+            }
+        }
+    };
+    
+    function wrapLabel(str, maxWidth) {
+        if (str.length <= maxWidth) return str;
+        let line = '';
+        let result = [];
+        const words = str.split(' ');
+        for(let i = 0; i < words.length; i++) {
+            let testLine = line + words[i] + ' ';
+            if(testLine.length > maxWidth && i > 0) {
+                result.push(line.trim());
+                line = words[i] + ' ';
+            } else {
+                line = testLine;
+            }
+        }
+        result.push(line.trim());
+        return result;
+    }
+
+
+    new Chart(document.getElementById('turbidityChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['아리수 탁도', 'WHO 기준치 잔여'],
+            datasets: [{
+                data: [0.05, 4.95],
+                backgroundColor: [brilliantBlues[0], brilliantBlues[4]],
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            ...defaultChartOptions,
+            plugins: {
+                ...defaultChartOptions.plugins,
+                title: { display: true, text: '아리수 탁도: 0.05 NTU (WHO 기준: 5 NTU 이하)' }
+            }
+        }
+    });
+
+    new Chart(document.getElementById('chlorineChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['아리수 잔류 염소', 'WHO 기준치 잔여'],
+            datasets: [{
+                data: [0.2, 3.8],
+                backgroundColor: [brilliantBlues[1], brilliantBlues[4]],
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            ...defaultChartOptions,
+            plugins: {
+                 ...defaultChartOptions.plugins,
+                title: { display: true, text: '아리수 잔류 염소: 0.1-0.3 mg/L (WHO 기준: 4 mg/L 이하)' }
+            }
+        }
+    });
+
+    const consumptionLabels = ['정수기 사용 (아리수 원수)', '아리수 직접 음용 (끓임 포함)', '생수 구매'];
+    new Chart(document.getElementById('consumptionChart'), {
+        type: 'bar',
+        data: {
+            labels: consumptionLabels.map(label => wrapLabel(label, 16)),
+            datasets: [{
+                label: '음용수 이용 비율 (%)',
+                data: [43.7, 36.5, 32.9],
+                backgroundColor: [brilliantBlues[1], brilliantBlues[0], brilliantBlues[3]],
+                borderColor: brilliantBlues[0],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            ...defaultChartOptions,
+            scales: {
+                y: { beginAtZero: true, max: 100 }
+            }
+        }
+    });
+
+    new Chart(document.getElementById('satisfactionChart'), {
+        type: 'pie',
+        data: {
+            labels: ['만족', '불만족'],
+            datasets: [{
+                data: [78.2, 21.8],
+                backgroundColor: [brilliantBlues[0], brilliantBlues[3]],
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        },
+        options: defaultChartOptions
+    });
+    
+    const budgetLabels = ['행사장 임대 및 설치', '홍보 및 마케팅', '운영 인력', '기념품 및 경품', '문화 공연'];
+    new Chart(document.getElementById('budgetChart'), {
+        type: 'doughnut',
+        data: {
+            labels: budgetLabels.map(label => wrapLabel(label, 16)),
+            datasets: [{
+                label: '예산 (원)',
+                data: [5000000, 3000000, 2000000, 1500000, 2000000],
+                backgroundColor: brilliantBlues,
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            ...defaultChartOptions,
+            plugins: {
+                 ...defaultChartOptions.plugins,
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#FFFFFF'
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
